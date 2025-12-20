@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynoStream - Spotify Clone for Synology</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <aside>
+            <div class="logo">
+                <i data-lucide="music-4"></i> SynoStream
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active"><i data-lucide="home"></i> Inicio</a></li>
+                    <li><a href="#"><i data-lucide="search"></i> Buscar</a></li>
+                    <li><a href="#"><i data-lucide="library"></i> Tu Biblioteca</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <header>
+                <div class="search-bar">
+                    <i data-lucide="search" size="18"></i>
+                    <input type="text" placeholder="¿Qué quieres escuchar?">
+                </div>
+                <div class="user-profile">
+                    <i data-lucide="user-circle"></i>
+                </div>
+            </header>
+
+            <section id="library-view">
+                <h2>Canciones en tu Synology</h2>
+                <div class="song-list" id="song-container">
+                    <!-- Songs will be injected here -->
+                    <p style="color: var(--spotify-text-grey); padding: 20px;">Por favor, conéctate a tu NAS primero.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Player Bar -->
+        <footer class="player-bar">
+            <div class="current-track">
+                <div class="album-art" id="current-art"></div>
+                <div class="song-info">
+                    <h4 id="current-title">Sinfonía Synology</h4>
+                    <p id="current-artist">SynoPlayer</p>
+                </div>
+            </div>
+
+            <div class="player-controls">
+                <div class="btns">
+                    <i data-lucide="shuffle"></i>
+                    <i data-lucide="skip-back"></i>
+                    <div class="play-btn" id="master-play">
+                        <i data-lucide="play" fill="#000"></i>
+                    </div>
+                    <i data-lucide="skip-forward"></i>
+                    <i data-lucide="repeat"></i>
+                </div>
+                <div class="progress-container">
+                    <span id="time-current">0:00</span>
+                    <div class="progress-bar" id="seek-bar">
+                        <div class="progress-fill" id="seek-fill"></div>
+                    </div>
+                    <span id="time-total">0:00</span>
+                </div>
+            </div>
+
+            <div class="volume-controls">
+                <i data-lucide="volume-2"></i>
+                <div class="progress-bar" style="width: 100px;">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Overlay -->
+    <div id="login-overlay">
+        <div class="login-card">
+            <div class="logo" style="justify-content: center; font-size: 32px;">
+                <i data-lucide="music-4" size="40"></i> SynoStream
+            </div>
+            <p style="text-align: center; color: var(--spotify-text-grey);">Conecta tu Synology DiskStation</p>
+            <input type="text" id="nas-url" placeholder="URL del NAS (ej. http://192.168.1.5:5000)" value="">
+            <input type="text" id="username" placeholder="Usuario">
+            <input type="password" id="password" placeholder="Contraseña">
+            <button id="login-btn">Conectar</button>
+            <div id="login-error" style="color: #ff4d4d; font-size: 14px; text-align: center; display: none;"></div>
+        </div>
+    </div>
+
+    <audio id="audio-player"></audio>
+    <script src="js/synology.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Init Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
