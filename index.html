@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Prismic Flare - Synology Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#121212">
+</head>
+
+<body class="spotify-theme">
+    <div id="app">
+        <!-- Login Overlay -->
+        <div id="login-overlay" class="overlay">
+            <div class="login-card">
+                <div class="logo">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                        <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <h1>Prismic Flare</h1>
+                </div>
+                <p>Conecta tu Synology NAS</p>
+                <div class="form-group">
+                    <input type="text" id="nas-url" placeholder="https://tu-nas.synology.me:5001" required>
+                    <input type="text" id="username" placeholder="Usuario" required>
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                    <button id="login-btn">Iniciar Sesión</button>
+                </div>
+                <div id="cors-help" class="help-box">
+                    <p>💡 <b>¿Problemas de conexión?</b></p>
+                    <p>Si estás probando desde tu PC, el navegador bloqueará la conexión por seguridad (CORS).</p>
+                    <p>Para solucionarlo, sube esta carpeta a tu Synology y ábrela desde allí, o usa el <b>Modo Demo</b>
+                        para ver cómo queda.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div id="main-content" class="hidden">
+            <aside id="sidebar">
+                <nav>
+                    <ul>
+                        <li class="active"><span class="icon">🏠</span> Inicio</li>
+                        <li><span class="icon">🔍</span> Buscar</li>
+                        <li><span class="icon">📚</span> Tu Biblioteca</li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main id="content">
+                <header>
+                    <div class="search-bar-inline">
+                        <input type="text" placeholder="¿Qué quieres escuchar?">
+                    </div>
+                </header>
+                <section id="library-view">
+                    <h2>Tus Álbumes</h2>
+                    <div id="albums-grid" class="grid">
+                        <!-- Albums injected by JS -->
+                    </div>
+                </section>
+            </main>
+
+            <!-- Player Bar -->
+            <footer id="player-bar">
+                <div class="now-playing">
+                    <img id="track-art" src="placeholder.png" alt="Album Art">
+                    <div class="track-info">
+                        <div id="track-title" class="title">Selecciona una canción</div>
+                        <div id="track-artist" class="artist">-</div>
+                    </div>
+                </div>
+                <div class="player-controls">
+                    <div class="buttons">
+                        <button id="prev-btn">⏮</button>
+                        <button id="play-pause-btn" class="play-main">▶</button>
+                        <button id="next-btn">⏭</button>
+                    </div>
+                    <div class="progress-container">
+                        <span id="current-time">0:00</span>
+                        <div class="progress-bar">
+                            <div id="progress-filled" class="filled"></div>
+                        </div>
+                        <span id="total-time">0:00</span>
+                    </div>
+                </div>
+                <div class="volume-controls">
+                    <span class="icon">🔊</span>
+                    <input type="range" id="volume-slider" min="0" max="100" value="80">
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
